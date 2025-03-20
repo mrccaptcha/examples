@@ -8,8 +8,8 @@ const { generateXSignupBlob } = require("./blobs");
 
 const mrccaptcha = new MRCCaptcha();
 const SITE_KEY = '0152B4EB-D2DC-460A-89A1-629838B529C9';
-const DEVICE = 'iphone'; // android(chrome, edge), iphone(chrome, safari), windows(chrome, edge), ipad(chrome, safari), macos(chrome, edge, safari), x-app-android(need extract app useragent, see example in ./src/x-singup-android-app.js)
-const BROWSER = 'safari';
+const DEVICE = 'android'; // android(chrome, edge), iphone(chrome, safari), windows(chrome, edge), ipad(chrome, safari), macos(chrome, edge, safari), x-app-android(need extract app useragent, see example in ./src/x-singup-android-app.js)
+const BROWSER = 'chrome';
 
 async function main() {
   try {
@@ -18,7 +18,7 @@ async function main() {
     const proxy = randomStickyProxy(config.proxy.pattern, config.proxy.regions);
     logger.info(`Proxy: ${proxy}`);
 
-    const userAgent = await mrccaptcha.getRandomUseragent(DEVICE, BROWSER);
+    const userAgent = await mrccaptcha.getRandomUseragent(DEVICE, {browser: BROWSER});
     logger.info(`Useragent: ${userAgent}`);
 
     const client = axios.create({

@@ -64,7 +64,7 @@ async function generateXSignupAndroidAppBlob(client) {
   const generateGuestToken = async () => {
     try {
       const {data} = await client({
-        url: 'https://dc.cftls.t.co/1.1/guest/activate.json',
+        url: 'https://api.twitter.com/1.1/guest/activate.json',
         method: 'POST',
         headers: { 
           'content-type': 'application/json',
@@ -82,6 +82,13 @@ async function generateXSignupAndroidAppBlob(client) {
     flowToken = data.flow_token;
     tasks.push(...data.subtasks);
     nextTask = data.subtasks?.[0]?.subtask_id || '';
+
+    // const langs = data?.subtasks?.[0]?.choice_selection;
+
+    // if (langs) {
+    //   console.log(JSON.stringify(langs));
+    //   throw new Error('Test');
+    // }
 
     const arkoseTask = data.subtasks.find(task => task.subtask_id.includes('ArkoseEmail'));
 
@@ -104,7 +111,7 @@ async function generateXSignupAndroidAppBlob(client) {
     try {
       const response = await client({
         method: 'POST',
-        url: `https://dc.cftls.t.co/1.1/onboarding/task.json`,
+        url: `https://api.twitter.com/1.1/onboarding/task.json`,
         params: opts.params || undefined,
         headers: { 
           'Content-Type': 'application/json'
@@ -132,7 +139,7 @@ async function generateXSignupAndroidAppBlob(client) {
         'flow_name': 'signup',
         'api_version': '1',
         'known_device_token': '',
-        'sim_country_code': 'vn'
+        'sim_country_code': 'vi'
       },
       data: {
         "input_flow_data": {

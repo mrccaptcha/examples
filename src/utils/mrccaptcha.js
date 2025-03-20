@@ -77,12 +77,12 @@ module.exports = class MRCCaptcha {
     return result;
   }
 
-  async getRandomUseragent(device, browser) {
+  async getRandomUseragent(device, {browser, model}) {
     try {
       const {data} = await this.client({
         method: 'GET',
         url: '/captcha/random-useragent',
-        params: {device, browser},
+        params: {device, browser, model},
         validateStatus: () => true
       });
       

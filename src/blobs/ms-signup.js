@@ -61,48 +61,47 @@ async function generateMSSignupBlob(client) {
           'Cookie': prepareData.cookie + '; mkt1=vi-VN'
         },
         data : {
-          "RequestTimeStamp": new Date().toISOString(),
-          "MemberName": "mrccaptcha12436@hotmail.com",
+          "BirthDate": "15:11:1999",
           "CheckAvailStateMap": [
-            "mrccaptcha12436@hotmail.com:undefined"
+              "sonlian243242@hmail.com:false",
+              "sonlian243242@hotmail.com:false"
           ],
+          "Country": "VN",
           "EvictionWarningShown": [],
-          "UpgradeFlowToken": {},
-          "FirstName": "lian",
-          "LastName": "son",
-          "MemberNameChangeCount": 1,
-          "MemberNameAvailableCount": 1,
-          "MemberNameUnavailableCount": 0,
-          "CipherValue": "apH/r5NbNAnfRHRiVmtqBYTwRLzVwoVBmH87U09TnXMTktgFw3KYxCKyuq7TmyDVxDatGHYyx6IkILIOjygoddiuw487hn0R/id9BeMh3ljc9VF/qyvQ9yNd23dNNtAhan6mPBGo0TxB7/xU6Hw5Rw0GVFUJDr89Z5+YAesrJKcwyyQICu9OUsA2yj2KoT/K6adJ6BICSmYKGPPIIMjPptB0naLbTNp8a41fHjsHk6LvUAQx+94Lpk3N3/ZIgEQPnhhMhdDF6Uzp1h+JLQjkVgM/dMFej5Wo8Mkiv2cEIgthF4s8L5CL4FChKz2nHcThtmpvYNSaLs3c4JgtHeFvIA==",
-          "SKI": "25CE4D96CB3A09A69CD847C69FC6D40AF4A4DE12",
-          "BirthDate": "02:04:1999",
-          "Country": "US",
+          "FirstName": "lina",
+          "IsRDM": false,
           "IsOptOutEmailDefault": true,
-          "IsOptOutEmailShown": true,
+          "IsOptOutEmailShown": 1,
           "IsOptOutEmail": true,
-          "LW": true,
-          "SiteId": "68692",
-          "IsRDM": 0,
-          "WReply": null,
-          "ReturnUrl": null,
-          "SignupReturnUrl": null,
-          "uiflvr": 1001,
-          "uaid": prepareData.uaid,
+          "IsUserConsentedToChinaPIPL": false,
+          "LastName": "son",
+          "LW": 1,
+          "MemberName": "sonlian243242@hotmail.com",
+          "RequestTimeStamp": "2025-03-12T14:42:28.757Z",
+          "ReturnUrl": "",
+          "SignupReturnUrl": "",
           "SuggestedAccountType": "EASI",
-          "HFId": "c43535691d074d768968c727fba1f1b3",
-          "encAttemptToken": "",
-          "dfpRequestId": "",
-          "PhoneRepRiskScoreDetails": "",
-          "RiskAssessmentDetails": "",
-          "RepMapRequestIdentifierDetails": "",
+          "SiteId": "",
+          "VerificationCodeSlt": "",
+          "WReply": "",
+          "MemberNameChangeCount": 2,
+          "MemberNameAvailableCount": 2,
+          "MemberNameUnavailableCount": 0,
+          "Password": "sonlian23424242",
+          "uiflvr": 1001,
           "scid": 100118,
-          "hpgid": 200639
+          "uaid": prepareData.uaid,
+          "hpgid": 200225
         }
       });
 
       const errorData = JSON.parse(data.error.data);
   
-      return encodeURIComponent(errorData.arkoseBlob);
+      return {
+        blob: encodeURIComponent(errorData.arkoseBlob),
+        prepareData: prepareData,
+        errorData: errorData
+      };
     }
     catch(error) {
       throw new Error(`Generate blob error: ${error.message}`);
